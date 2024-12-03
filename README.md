@@ -34,4 +34,4 @@ PLEASE, SAVE "HangmanWords.txt" IN YOUR DESKTOP OR MODIFY THE PATH IN WordManage
 
 
 Starting Game:
-!![Starting Game](assets/StartingGame.png)
+![Starting Game](assets/StartingGame.png)
