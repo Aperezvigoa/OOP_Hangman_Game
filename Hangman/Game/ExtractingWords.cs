@@ -5,7 +5,7 @@ public class ExtractingWords
     private string _lineToRead;
     private readonly string _filePath;
 
-    public ExtractingWords(string path = "C:\\Users\\alexp\\Desktop\\HangmanWords.txt")
+    public ExtractingWords(string path = "C:\\Users\\@YOURNAME\\Desktop\\HangmanWords.txt")
     {
         _filePath = path;
         _sReader = new StreamReader(_filePath);
