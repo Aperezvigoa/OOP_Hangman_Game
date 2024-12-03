@@ -1,15 +1,4 @@
-﻿/*
- * Clase Gestor Juego
- * Leer palabras de un txt - ok
- * Selecciona la palabra - ok
- * Clase Palabra - Controla la palabra - ok
- * Validacion de entrada - ok
- * Registro Intentos
- * Renderizado de ahorcado
- * Interfaz de usuario
- */
-
-using System.IO;
+﻿using System.IO;
 
 var game = new HangMan();
 game.Details();
@@ -61,7 +50,7 @@ class HangMan
             if (InputManager.IsValidChar(playerInput))
             { 
                 charPlayerInput = playerInput[0];
-                attemps = attempManager.UpdateRemainingAttempts(inputManager.IsCharUsed(charPlayerInput));
+                attemps = attempManager.UpdateRemainingAttempts(inputManager.IsCharUsed(charPlayerInput), inputManager.IsCharInWord(charPlayerInput, wordManager.SecretWord));
                 wordManager.RevealingWord(charPlayerInput);
             }
             continue;
@@ -108,22 +97,22 @@ public class SelectingAWord
 
 public class WordManager
 {
-    private readonly string _secretWord;
+    public readonly string SecretWord;
     public string UserWord = "";
 
     public WordManager(string SelectedWord)
     {
-        _secretWord = SelectedWord;
-        foreach (char c in _secretWord) UserWord += '_';
+        SecretWord = SelectedWord;
+        foreach (char c in SecretWord) UserWord += '_';
     }
 
     public string RevealingWord(char userInputChar) 
     {
         List<int> positions = new List<int>();
 
-        for (int i = 0; i < _secretWord.Length; i++)
+        for (int i = 0; i < SecretWord.Length; i++)
         {
-            if (_secretWord[i] == userInputChar) positions.Add(i);
+            if (SecretWord[i] == userInputChar) positions.Add(i);
         }
 
         char[] tempWordArr = UserWord.ToCharArray();
@@ -168,6 +157,15 @@ public class InputManager
         WrongLetters.Add(c);
         return false;
     }
+
+    public bool IsCharInWord(char userInput, string word)
+    {
+        foreach (char c in word)
+        {
+            if (userInput == c) return true;
+        }
+        return false;
+    }
 }
 
 public class AttempManager
@@ -178,9 +176,9 @@ public class AttempManager
 
     public int RemainingAttempts() => _maxAttemps;
 
-    public int UpdateRemainingAttempts(bool isDuplicateLetter)
+    public int UpdateRemainingAttempts(bool isDuplicateLetter, bool isCharInWord)
     {
-        if (!isDuplicateLetter) --_maxAttemps;         
+        if (!isDuplicateLetter && !isCharInWord) --_maxAttemps;    
         return _maxAttemps;
     }
 }
