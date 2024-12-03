@@ -31,3 +31,7 @@ Hangman/
 
 
 PLEASE, SAVE "HangmanWords.txt" IN YOUR DESKTOP OR MODIFY THE PATH IN WordManager.cs
+
+
+Starting Game:
+![StartingGame](https://github.com/user-attachments/assets/7a21f076-c3f4-4b75-8666-a2b2d6b19082)
