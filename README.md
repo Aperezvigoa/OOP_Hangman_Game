@@ -30,4 +30,4 @@ Hangman/
 └── Hangman.csproj                # Project configuration file
 
 
-PLEASE, SAVE "HangmanWords.txt" IN YOUR DESKTOP OR MODIFY THE PATH IN WordManager.cs
+⚠ PLEASE, SAVE "HangmanWords.txt" IN YOUR DESKTOP OR MODIFY THE PATH!!!!!! ⚠
